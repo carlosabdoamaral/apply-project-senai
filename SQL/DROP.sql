@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS political_party, clean_sheet, candidate, vote, institute, place, search_type, search_format, search,candidate_and_search CASCADE;
