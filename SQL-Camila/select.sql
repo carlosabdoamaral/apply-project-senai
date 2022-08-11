@@ -18,7 +18,7 @@ SELECT
         FROM
             candidate_and_search AS cs
         WHERE
-            cs.id_search = '2') * 100) AS f
+            cs.id_search = '2') * 100) AS Porcentagem
 FROM
     candidate_and_search AS cs
 WHERE
