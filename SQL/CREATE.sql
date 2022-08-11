@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS political_party, clean_sheet, candidate, vote, institute, place, search_type, search_format, search,candidate_and_search CASCADE;
-
 CREATE TABLE political_party (
 	id SERIAL PRIMARY KEY,
 	name VARCHAR(100) NOT NULL,
@@ -28,11 +26,11 @@ CREATE TABLE place (
 	cep VARCHAR(10) NOT NULL
 );
 
-CREATE TABLE institute (
-	id SERIAL PRIMARY KEY,
-	id_place INT REFERENCES place(id),
-	name VARCHAR(255) NOT NULL UNIQUE
-);
+-- CREATE TABLE institute (
+-- 	id SERIAL PRIMARY KEY,
+-- 	id_place INT REFERENCES place(id),
+-- 	name VARCHAR(255) NOT NULL UNIQUE
+-- );
 
 CREATE TABLE search_type (
 	id SERIAL PRIMARY KEY,
@@ -46,7 +44,7 @@ CREATE TABLE search_format (
 
 CREATE TABLE search (
 	id SERIAL PRIMARY KEY,
-	id_institute INT REFERENCES institute(id),
+	-- id_institute INT REFERENCES institute(id),
 	id_place INT REFERENCES place(id),
 	id_type INT REFERENCES search_type(id),
 	id_format INT REFERENCES search_format(id),
@@ -54,15 +52,9 @@ CREATE TABLE search (
 	age_average FLOAT
 );
 
--- Rever o nome
 CREATE TABLE candidate_and_search(
 	id SERIAL PRIMARY KEY,
 	id_candidate INT REFERENCES candidate(id),
-	id_search INT REFERENCES search(id)
-);
-
-CREATE TABLE vote (
-	id SERIAL PRIMARY KEY,
-	id_candidate INT REFERENCES candidate(id),
-	id_search INT REFERENCES search(id)
+	id_search INT REFERENCES search(id),
+  vote int
 );

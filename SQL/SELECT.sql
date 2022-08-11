@@ -1,19 +1,26 @@
--- SELECT * FROM vote WHERE id_search=1;
--- SELECT id FROM vote ORDER BY id DESC LIMIT 1
--- SELECT * FROM vote WHERE id_search=1 and id_candidate=2
+-- Select 01 A
+SELECT * FROM candidate_and_search 
+WHERE id_candidate = 1 and id_search = 5;
+
+-- Select 01 B
+SELECT * FROM candidate_and_search
+WHERE id_search = 5;
+
+-- Select 01 C
+SELECT * FROM candidate_and_search
+WHERE id_candidate = 1;
 
 
--- counter_pesquisa 			 - 100
--- votos_candidato_na_pesquisa  - x
+-- Select 02
+SELECT COUNT(*) FROM candidate_and_search
 
--- Counter pesquisa
--- Total de votos em uma pesquisa
--- SELECT COUNT(*) FROM vote WHERE id_search=1;
 
--- Candidate votes in search
--- Total de votos do candidato em uma pesquisa
--- SELECT COUNT(id_candidate) FROM vote WHERE id_search=1 AND id_candidate=1;
+-- Select 03
+SELECT SUM(vote) FROM candidate_and_search
+WHERE id_candidate = 1;
 
+
+-- Select 04
 -- Parametro 1: Id pesquisa
 -- Parametro 2: Id candidato
 DROP FUNCTION percentage(int, int);
