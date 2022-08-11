@@ -22,23 +22,34 @@ WHERE id_candidate = 1;
 
 -- Select 04
 -- Parametro 1: Id pesquisa
--- Parametro 2: Id candidato
-DROP FUNCTION percentage(int, int);
-CREATE OR REPLACE FUNCTION percentage(INT, INT)
-RETURNS float AS $percent$
+DROP FUNCTION IF EXISTS candidatePercentPerSearch(int);
+CREATE OR REPLACE FUNCTION candidatePercentPerSearch(INT)
+RETURNS TABLE (candidate_id INT, candidate_name VARCHAR(255), percentage FLOAT) AS $$
+
 DECLARE
-	percent float;
-	counter_search int;
-	candidate_votes int;
+	currentCandidate record;
+	searchVotesCount int;
+	
+	totalVotes int;	
+	currentCandidateVoteCount int;
 BEGIN
-	SELECT COUNT(*) FROM vote WHERE id_search=$1 INTO counter_search;
-	SELECT COUNT(id_candidate) FROM vote WHERE id_search=$1 AND id_candidate=$2 INTO candidate_votes;
-	
-	percent := (candidate_votes * 100) / counter_search;
-	
-	RETURN percent;
-END;
+	SELECT SUM(vote) FROM candidate_and_search WHERE id_search = $1 INTO totalVotes;
 
-$percent$ LANGUAGE plpgsql;
+	FOR currentCandidate IN (SELECT * FROM candidate_and_search WHERE id_search=$1) LOOP
+		candidate_id := currentCandidate.id_candidate;
+		SELECT name FROM candidate WHERE id=currentCandidate.id_candidate INTO candidate_name;
+		
+		SELECT vote FROM candidate_and_search WHERE id_search = $1 AND id_candidate = currentCandidate.id_candidate INTO currentCandidateVoteCount;
+		
+		percentage := (currentCandidateVoteCount * 100) / totalVotes;
+		
+		RETURN NEXT;
+	END LOOP;
+	
+END;$$
 
-select percentage(1, 2)
+
+LANGUAGE plpgsql;
+select candidatePercentPerSearch(5);
+
+SELECT * FROM candidate_and_search WHERE id_search = 5;

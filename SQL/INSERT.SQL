@@ -33,7 +33,8 @@ INSERT INTO search (id_place, id_type, id_format, date, age_average) VALUES (1, 
 INSERT INTO search (id_place, id_type, id_format, date, age_average) VALUES (2, 1, 2, '2020-03-10', 50);
 
 INSERT INTO candidate_and_search (id_candidate, id_search, vote) VALUES (1, 5, 100000);	
+INSERT INTO candidate_and_search (id_candidate, id_search, vote) VALUES (2, 5, 97000);
+
 INSERT INTO candidate_and_search (id_candidate, id_search, vote) VALUES (2, 4, 15000);
 INSERT INTO candidate_and_search (id_candidate, id_search, vote) VALUES (3, 3, 3000);
 INSERT INTO candidate_and_search (id_candidate, id_search, vote) VALUES (4, 2, 10000);
-INSERT INTO candidate_and_search (id_candidate, id_search, vote) VALUES (5, 1, 97000);
