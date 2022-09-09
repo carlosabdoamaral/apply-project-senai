@@ -1,35 +1,39 @@
-package controller;
+package dao;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import dao.CandidatoXPesquisaDao;
 import model.CandidatoXPesquisa;
 
-public class CandidatoXPesquisaController {
+public class CandidatoXPesquisaDao {
+	private static CandidatoXPesquisaDao instance;
+	private List<CandidatoXPesquisa> listaCandidatosxPesquisas = new ArrayList();
 	
-	public void salvar(CandidatoXPesquisa cxp) throws Exception {
-		if (cxp.getCandidato() == null || cxp.getPesquisa() == null || cxp.getVotos() == 0) {
-			throw new Exception("Um ou mais atributos faltando!"); 
+	public static CandidatoXPesquisaDao getInstance() {
+		if (instance == null) {
+			instance = new CandidatoXPesquisaDao();
 		}
-		CandidatoXPesquisaDao.getInstance().salvar(cxp);
+		return instance;
+		
 	}
 	
-	public void atualizar(CandidatoXPesquisa cxp) throws Exception {
-		if (cxp.getCandidato() == null || cxp.getPesquisa() == null || cxp.getVotos() == 0) {
-			throw new Exception("Um ou mais atributos inválidos!");
-		}
-		CandidatoXPesquisaDao.getInstance().atualizar(cxp); 
+	public void salvar(CandidatoXPesquisa candidatoxPesquisa) {
+		listaCandidatosxPesquisas.add(candidatoxPesquisa);
+		
+	}
+
+	public void atualizar(CandidatoXPesquisa candidatoxPesquisa) {
+		listaCandidatosxPesquisas.set(candidatoxPesquisa.getId(),candidatoxPesquisa);
+		
 	}
 	
-	public void excluir(int idCxp) throws Exception {
-		if (idCxp == 0) {
-			throw new Exception("Nenhum item selecionado!");
-		}
-		CandidatoXPesquisaDao.getInstance().excluir(idCxp);
+	public void excluir(int idCandidatoxPesquisa) {
+		listaCandidatosxPesquisas.remove(idCandidatoxPesquisa);
 	}
 	
 	public List<CandidatoXPesquisa> listar(){
-		return CandidatoXPesquisaDao.getInstance().listar();
+		return listaCandidatosxPesquisas;
 	}
+
+
 
 }
