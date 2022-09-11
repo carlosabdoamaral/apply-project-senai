@@ -1,17 +1,19 @@
 package model;
 
+import java.sql.Timestamp;
+
 public class Pesquisa  {
 	
 	private int id;
 	private String instituto;
-	private String data;
+	private Timestamp data;
 	private String local;
 	private int idadeMedia;
 	private String tipoPesquisa;
 	private String formatoPesquisa;
 	
 	
-	public Pesquisa(int id, String instituto, String data, String local, int idadeMedia, String tipoPesquisa, String formatoPesquisa) {
+	public Pesquisa(int id, String instituto, Timestamp data, String local, int idadeMedia, String tipoPesquisa, String formatoPesquisa) {
 		this.id = id;
 		this.instituto = instituto;
 		this.data = data;
@@ -20,10 +22,6 @@ public class Pesquisa  {
 		this.tipoPesquisa = tipoPesquisa;
 		this.formatoPesquisa = formatoPesquisa;
 	}
-	
-	public Pesquisa() {
-		
-		}
 
 	public int getId() {
 		return id;
@@ -41,11 +39,11 @@ public class Pesquisa  {
 		this.instituto = instituto;
 	}
 
-	public String getData() {
+	public Timestamp getData() {
 		return data;
 	}
 
-	public void setData(String data) {
+	public void setData(Timestamp data) {
 		this.data = data;
 	}
 

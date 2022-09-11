@@ -10,7 +10,7 @@ import java.util.List;
 public class PesquisaDao {
     private static PesquisaDao instance;
 
-    private List<Pesquisa> searchList = new ArrayList<>();
+    private List<Pesquisa> listaDePesquisas = new ArrayList<>();
 
     public static PesquisaDao getInstance() {
         if (instance == null) {
@@ -20,35 +20,48 @@ public class PesquisaDao {
         return instance;
     }
 
-    public boolean save(Pesquisa pesquisa) {
-        try {
-            searchList.add(pesquisa);
-            return true;
-        } catch (Error e) {
-            System.out.println(e.getLocalizedMessage());
-            return false;
+    public void salvar(Pesquisa pesquisa) throws Exception {
+        if (
+                !pesquisa.getInstituto().isEmpty()
+                && !pesquisa.getLocal().isEmpty()
+                && pesquisa.getIdadeMedia() > 16 //Idade mínima para votar
+                && !pesquisa.getTipoPesquisa().isEmpty()
+                && !pesquisa.getFormatoPesquisa().isEmpty()
+        ) {
+            listaDePesquisas.add(pesquisa);
+            return;
+        } else {
+            throw new Exception("Object must be full filled");
         }
     }
 
-    public boolean update(Pesquisa pesquisa) {
-        try {
-            searchList.set(pesquisa.getId(), pesquisa);
-            return true;
-        } catch (Error e) {
-            System.out.println(e.getLocalizedMessage());
-            return false;
+    public void atualizar(Pesquisa pesquisa) throws Exception{
+        if (listaDePesquisas.isEmpty()) {
+            throw new Exception("List is empty");
+        } else {
+            int i = 0;
+
+            for (Pesquisa p : listaDePesquisas) {
+                if (i == pesquisa.getId()) {
+                    listaDePesquisas.set(i, pesquisa);
+                }
+            }
         }
     }
 
-    public boolean delete(int searchID) {
-        try {
-            searchList.remove(searchID);
-            return true;
-        } catch (Error e) {
-            System.out.println(e.getLocalizedMessage());
-            return false;
+    public void excluir(Pesquisa pesquisa) throws Exception {
+        if (listaDePesquisas.isEmpty()) {
+            throw new Exception("List is empty");
+        } else {
+            int i = 0;
+
+            for (Pesquisa p : listaDePesquisas) {
+                if (i == pesquisa.getId()) {
+                    listaDePesquisas.remove(i);
+                }
+            }
         }
     }
 
-    public List<Pesquisa> getList() { return searchList; }
+    public List<Pesquisa> listar() { return listaDePesquisas; }
 }

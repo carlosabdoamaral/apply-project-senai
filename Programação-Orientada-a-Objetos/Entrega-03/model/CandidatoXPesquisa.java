@@ -14,10 +14,6 @@ public class CandidatoXPesquisa {
 		this.pesquisa = pesquisa;
 	}
 	
-	public CandidatoXPesquisa() {
-		
-	}
-	
 	public int getId() {
 		return id;
 	}

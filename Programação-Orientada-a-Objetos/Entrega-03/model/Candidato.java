@@ -14,9 +14,6 @@ public class Candidato {
 		this.fichaLimpa = fichaLimpa;
 	}
 
-	public Candidato() {
-		
-	}
 	public int getId() {
 		return id;
 	}
