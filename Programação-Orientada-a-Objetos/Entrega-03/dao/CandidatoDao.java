@@ -73,7 +73,7 @@ public class CandidatoDao {
 	public List<Candidato> listar(){
 		
 		List<Candidato> listaCandidatos = new ArrayList();
-		
+
 		try {
 			String sql = "select * from candidato";
 			Statement stmt = con.createStatement();
