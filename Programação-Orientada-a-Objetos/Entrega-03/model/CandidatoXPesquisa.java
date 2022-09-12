@@ -41,7 +41,7 @@ public class CandidatoXPesquisa {
 	public void setCandidato(Candidato candidato) {
 		this.candidato = candidato;
 	}
-
+	
 	public Pesquisa getPesquisa() {
 		return pesquisa;
 	}
@@ -53,5 +53,6 @@ public class CandidatoXPesquisa {
 	public String toString(){
 		return "Candidato: " + this.candidato + ". Pesquisa: " + this.pesquisa + ". Votos: " + this.votos;
 	}
+
 	
 }
