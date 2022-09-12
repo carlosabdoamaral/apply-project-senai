@@ -23,6 +23,14 @@ public class Pesquisa  {
 		this.formatoPesquisa = formatoPesquisa;
 	}
 	
+	public Pesquisa( String instituto, String data, String local, int idadeMedia, String tipoPesquisa, String formatoPesquisa) {
+		this.instituto = instituto;
+		this.data = data;
+		this.local = local;
+		this.idadeMedia = idadeMedia;
+		this.tipoPesquisa = tipoPesquisa;
+		this.formatoPesquisa = formatoPesquisa;
+	}
 	public Pesquisa() {
 		
 		}
